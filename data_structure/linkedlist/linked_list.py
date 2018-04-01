@@ -1,3 +1,5 @@
+from compare_2_list import compare_2_list
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -69,26 +71,6 @@ class LinkedList:
                 temp = temp.next
 
             temp.next = temp.next.next
-            temp.next.next = None
-
-
-def compare_2_list(headA, headB):
-    itA = headA
-    itB = headB
-    valid = 1
-    while itA or itB:
-        if (not itA and itB) or (itA and not itB):
-            return 0
-        if itA.data != itB.data:
-            valid = 0
-            break
-        itA = itA.next
-        itB = itB.next
-
-    return valid
-
-
-
 
 # llist = LinkedList()
 # llist.add_tail(2)
