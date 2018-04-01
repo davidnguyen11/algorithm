@@ -71,16 +71,43 @@ class LinkedList:
             temp.next = temp.next.next
             temp.next.next = None
 
-llist = LinkedList()
-llist.add_tail(2)
-llist.add_tail(3)
-llist.add_tail(5)
+
+def compare_2_list(headA, headB):
+    itA = headA
+    itB = headB
+    valid = 1
+    while itA or itB:
+        if (not itA and itB) or (itA and not itB):
+            return 0
+        if itA.data != itB.data:
+            valid = 0
+            break
+        itA = itA.next
+        itB = itB.next
+
+    return valid
+
+
+
+
+# llist = LinkedList()
+# llist.add_tail(2)
+# llist.add_tail(3)
+# llist.add_tail(5)
 # llist.insert_n_th(3, 0)
 # llist.insert_n_th(5, 1)
 # llist.insert_n_th(4, 2)
 # llist.insert_n_th(2, 3)
 # llist.insert_n_th(10, 1)
+# llist.delete(0)
+# llist.print_list()
 
-llist.delete(0)
+llistA = LinkedList()
+llistA.add_tail(1)
+llistA.add_tail(2)
 
-llist.print_list()
+llistB = LinkedList()
+llistB.add_tail(1)
+llistB.add_tail(2)
+
+print compare_2_list(llistA.head, llistB.head)
