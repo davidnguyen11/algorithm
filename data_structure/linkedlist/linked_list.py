@@ -51,14 +51,36 @@ class LinkedList:
             new_node.next = prev_node.next
             prev_node.next = new_node
 
+    def delete(self, position):
+        if not self.head.next:
+            self.head = None
+            return
+        else:
+            if position == 0:
+                self.head = self.head.next
+                return
+
+            count = 0
+            temp = self.head
+            while temp:
+                if count == position - 1:
+                    break
+                count = count + 1
+                temp = temp.next
+
+            temp.next = temp.next.next
+            temp.next.next = None
+
 llist = LinkedList()
-# llist.add_tail(2)
-# llist.add_tail(3)
-# llist.add_tail(5)
-llist.insert_n_th(3, 0)
-llist.insert_n_th(5, 1)
-llist.insert_n_th(4, 2)
-llist.insert_n_th(2, 3)
-llist.insert_n_th(10, 1)
+llist.add_tail(2)
+llist.add_tail(3)
+llist.add_tail(5)
+# llist.insert_n_th(3, 0)
+# llist.insert_n_th(5, 1)
+# llist.insert_n_th(4, 2)
+# llist.insert_n_th(2, 3)
+# llist.insert_n_th(10, 1)
+
+llist.delete(0)
 
 llist.print_list()
