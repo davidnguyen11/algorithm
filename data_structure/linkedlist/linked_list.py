@@ -72,10 +72,22 @@ class LinkedList:
 
             temp.next = temp.next.next
 
-# llist = LinkedList()
-# llist.add_tail(2)
-# llist.add_tail(3)
-# llist.add_tail(5)
+    def get_node(self, position):
+        arr = []
+        temp = self.head
+        while temp:
+            arr.append(temp.data)
+            temp = temp.next
+
+        length_arr = len(arr)
+        last_index = length_arr - 1
+        return arr[last_index - position]
+
+llist = LinkedList()
+llist.add_tail(2)
+llist.add_tail(3)
+llist.add_tail(5)
+# print llist.get_node(1)
 # llist.insert_n_th(3, 0)
 # llist.insert_n_th(5, 1)
 # llist.insert_n_th(4, 2)
@@ -84,12 +96,12 @@ class LinkedList:
 # llist.delete(0)
 # llist.print_list()
 
-llistA = LinkedList()
-llistA.add_tail(1)
-llistA.add_tail(2)
+# llistA = LinkedList()
+# llistA.add_tail(1)
+# llistA.add_tail(2)
 
-llistB = LinkedList()
-llistB.add_tail(1)
-llistB.add_tail(2)
+# llistB = LinkedList()
+# llistB.add_tail(1)
+# llistB.add_tail(2)
 
-print compare_2_list(llistA.head, llistB.head)
+# print compare_2_list(llistA.head, llistB.head)
