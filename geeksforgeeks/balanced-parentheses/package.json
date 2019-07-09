@@ -1,0 +1,12 @@
+{
+  "name": "balanced-parentheses",
+  "version": "1.0.0",
+  "description": "",
+  "main": "balanced-parentheses.js",
+  "scripts": {
+    "test": "node balanced-parentheses.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
