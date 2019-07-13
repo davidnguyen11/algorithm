@@ -1,0 +1,12 @@
+{
+  "name": "two-sum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./two-sum.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
