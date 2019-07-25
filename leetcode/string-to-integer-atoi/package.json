@@ -1,0 +1,12 @@
+{
+  "name": "string-to-integer-atoi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "string-to-integer-atoi.js",
+  "scripts": {
+    "test": "node ./string-to-integer-atoi.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
