@@ -1,0 +1,12 @@
+{
+  "name": "longest-substring-without-repeating-characters",
+  "version": "1.0.0",
+  "description": "",
+  "main": "longest-substring-without-repeating-characters.js",
+  "scripts": {
+    "test": "node ./longest-substring-without-repeating-characters.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
