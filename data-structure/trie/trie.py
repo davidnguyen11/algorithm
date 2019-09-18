@@ -51,7 +51,7 @@ class TrieNode:
     for c in prefix:
       index = ord(c) - ord("a")
       if not root.children[index]:
-        return[]
+        return []
       root = root.children[index]
 
     list_keywords = []
@@ -66,8 +66,26 @@ class TrieNode:
     return True
 
   def remove_word(self, word, depth = 0):
-    pass
+    # if current node has children => set node to false
+    # if current node has no child => delete it
+    ## recursive to the node above, if parent node has no child => delete it
+    if not self:
+      return None
+    
+    if len(word) == depth:
+      if self.is_end_of_word == True:
+        self.is_end_of_word = False
+      
+      if self.is_empty():
+        self = None
+      return True
 
+    if self.is_empty() and self.is_end_of_word == False:
+      self = None
+      return True
+
+    index = ord(word[depth]) - ord("a");
+    self.children[index].remove_word(word, depth + 1)
 
 
 trie = TrieNode()
@@ -80,18 +98,18 @@ trie.insert("their")
 # trie.insert("answer")
 # trie.insert("any")
 
-trie.insert("by")
-trie.insert("bye")
+# trie.insert("by")
+# trie.insert("bye")
 
-trie.insert("ab")
+# trie.insert("ab")
 
-result = trie.search("ab")
-print result
+# result = trie.search("ab")
+# print result
 
-trie = trie.remove_word("ab")
+# trie = trie.remove_word("ab")
 
-result1 = trie.search("ab")
-print trie.children[0]
+# result1 = trie.search("ab")
+# print trie.children[0]
 
 # result1 = trie.search("there")
 # print result1
@@ -103,3 +121,9 @@ print trie.children[0]
 
 # suggestion = trie.get_search_suggestion("a")
 # print suggestion
+
+ab = trie.remove_word("there")
+print "ab ab", ab
+
+suggestion = trie.get_search_suggestion("the")
+print suggestion
