@@ -1,0 +1,12 @@
+{
+  "name": "trie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "trie.js",
+  "scripts": {
+    "test": "node ./trie.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

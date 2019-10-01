@@ -87,12 +87,22 @@ class TrieNode:
     index = ord(word[depth]) - ord("a");
     self.children[index].remove_word(word, depth + 1)
 
+  def startsWith(self, prefix):
+    for c in prefix:
+      index = ord(c) - ord("a")
+      if not self.children[index]:
+        return False
+      self = self.children[index]
+    return True
 
 trie = TrieNode()
 trie.insert("the")
 trie.insert("there")
 trie.insert("these")
 trie.insert("their")
+
+abc = trie.startsWith("abc")
+print "found", abc
 
 # trie.insert("a")
 # trie.insert("answer")
