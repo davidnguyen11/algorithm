@@ -1,0 +1,13 @@
+{
+  "name": "union-find",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./index.js",
+    "abc": "node ./abc.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
