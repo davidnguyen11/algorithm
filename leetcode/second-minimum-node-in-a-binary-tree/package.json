@@ -1,0 +1,12 @@
+{
+  "name": "second-minimum-node-in-a-binary-tree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
