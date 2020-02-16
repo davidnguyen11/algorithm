@@ -10,20 +10,20 @@
  * @return {number}
  */
 var findSecondMinimumValue = function(node) {
-  function finMin(node) {
+  function findMin(node) {
     var minLeft = Infinity;
     if (node && node.left) {
-      minLeft = finMin(node.left);
+      minLeft = findMin(node.left);
     }
 
     var minRight = Infinity;
     if (node && node.right) {
-      minRight = finMin(node.right);
+      minRight = findMin(node.right);
     }
     return Math.min(node.val, minLeft, minRight);
   }
 
-  var firstMin = finMin(node);
+  var firstMin = findMin(node);
   var secondMin = Infinity;
   
   function findSecondMin(node) {
