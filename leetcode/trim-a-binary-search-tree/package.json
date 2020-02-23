@@ -1,0 +1,12 @@
+{
+  "name": "trim-a-binary-search-tree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
