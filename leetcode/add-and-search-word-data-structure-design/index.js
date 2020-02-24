@@ -29,38 +29,69 @@ WordDictionary.prototype.addWord = function(word) {
 
 /**
  * Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. 
+ * BFS version
+ * @param {string} word
+ * @return {boolean}
+ */
+// WordDictionary.prototype.search = function(word) {
+//   var self = this;
+
+//   function helper(node, word, i) {
+//     if (!node) return false;
+
+//     if (i === word.length) {
+//       return node.isEndWord;
+//     }
+
+//     var letter = word[i];
+
+//     if (letter === '.') {
+//       for (var k = 0; k < node.children.length; k++) {
+//         if (helper(node.children[k], word, i + 1)) {
+//           return true;
+//         }
+//       }
+//     } else {
+//       var index = letter.charCodeAt(0) - 'a'.charCodeAt(0);
+//       if (helper(node.children[index], word, i + 1)) {
+//         return true;
+//       }
+//     }
+//     return false;
+//   }
+
+//   return helper(self, word, 0);
+// };
+
+/**
+ * Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. 
+ * DFS version
  * @param {string} word
  * @return {boolean}
  */
 WordDictionary.prototype.search = function(word) {
   var self = this;
 
-  function helper(node, word, i) {
-    if (!node) return false;
+  if (!word) {
+    return self.isEndWord;
+  }
 
-    if (i === word.length) {
-      return node.isEndWord;
-    }
+  var letter = word[0];
 
-    var letter = word[i];
-
-    if (letter === '.') {
-      for (var k = 0; k < node.children.length; k++) {
-        if (helper(node.children[k], word, i + 1)) {
-          return true;
-        }
-      }
-    } else {
-      var index = letter.charCodeAt(0) - 'a'.charCodeAt(0);
-      if (helper(node.children[index], word, i + 1)) {
+  if (letter === '.') {
+    for (var i = 0; i < self.children.length; i++) {
+      if (self.children[i] && self.children[i].search(word.substring(1))) {
         return true;
       }
     }
-    return false;
+  } else {
+    var index = letter.charCodeAt(0) - 'a'.charCodeAt(0);
+    if (self.children[index] && self.children[index].search(word.substring(1))) {
+      return true;
+    }
   }
-
-  return helper(self, word, 0);
-};
+  return false;
+}
 
 // function bfs(node, word, i) {
 //   if (!node) return false;
@@ -94,20 +125,20 @@ var obj = new WordDictionary()
 // console.log('ca.dy', obj.search('ca.dy')); // false
 // console.log('b..', obj.search('b..')); // true
 
-// obj.addWord('a');
-// obj.addWord('a');
-// console.log('a', obj.search('.')); // true
-// console.log('a', obj.search('a')); // true
-// console.log('aa', obj.search('aa')); // false
-// console.log('a', obj.search('a')); // true
-// console.log('.a', obj.search('.a')); // false
-// console.log('a.', obj.search('a.')); // false
+obj.addWord('a');
+obj.addWord('a');
+console.log('a', obj.search('.')); // true
+console.log('a', obj.search('a')); // true
+console.log('aa', obj.search('aa')); // false
+console.log('a', obj.search('a')); // true
+console.log('.a', obj.search('.a')); // false
+console.log('a.', obj.search('a.')); // false
 
-obj.addWord('at');
-obj.addWord('and');
-obj.addWord('an');
-obj.addWord('add');
-obj.addWord('bat');
-console.log('an.', obj.search('an.')); // true
-console.log('a.', obj.search('a.')); // true
-console.log('.at', obj.search('.at')); // true
+// obj.addWord('at');
+// obj.addWord('and');
+// obj.addWord('an');
+// obj.addWord('add');
+// obj.addWord('bat');
+// console.log('an.', obj.search('an.')); // true
+// console.log('a.', obj.search('a.')); // true
+// console.log('.at', obj.search('.at')); // true
