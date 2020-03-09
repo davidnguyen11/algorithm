@@ -13,12 +13,16 @@ var sumOfLeftLeaves = function(node) {
   if (!node) return 0;
 
   var sum = 0;
-  if (node.left && !node.left.left && !node.left.right) {
+  if (isLeaf(node.left)) {
     sum += node.left.val;
   }
 
   return sum + sumOfLeftLeaves(node.left) + sumOfLeftLeaves(node.right);
 };
+
+function isLeaf(node) {
+  return node && !node.left && !node.right;
+}
 
 var node = {
   val: 3,
