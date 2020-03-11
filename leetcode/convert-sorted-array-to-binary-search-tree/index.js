@@ -30,6 +30,31 @@ var sortedArrayToBST = function(nums) {
   };
 };
 
+// Solution 2
+// var sortedArrayToBST = function(nums) {
+//   if (!nums || nums.length === 0) return null;
+//   return helper(nums, 0, nums.length - 1);
+// };
+
+// function helper(nums, start, end) {
+//   if (!nums || nums.length === 0 || start > end) return  null;
+//   if (start === end) {
+//     return {
+//       val: nums[start],
+//       left: null,
+//       right: null,
+//     }
+//   }
+
+//   var mid = Math.floor((start + end) / 2);
+
+//   return {
+//     val: nums[mid],
+//     left: helper(nums, start, mid - 1) || null,
+//     right: helper(nums, mid + 1, end) || null,
+//   }
+// }
+
 var nums = [-10, -3, 0, 5, 9];
 var nums = [-10, -3, -2, 0, 5, 9];
 var nums = [1, 2];
