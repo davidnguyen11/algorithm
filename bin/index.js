@@ -8,7 +8,7 @@ const { name, version } = packageJson;
 const program = new commander.Command(name).version(version);
 
 program
-  .command(`new [appName]`)
+  .command(`new [name] [arguments]`)
   .description('Set up boilerplate to solve problem')
   .action(function (appName) {
     generator(appName);
