@@ -5,11 +5,11 @@ const path = require('path');
 const toCamelCase = require('./utils/to-camel-case');
 const { getJsBody } = require('./utils/content');
 
-module.exports = function (appName, params) {
+module.exports = function (appName, funcName, params) {
   const appDir = path.join(process.cwd(), appName);
   const jsFileName = path.join(appDir, 'index.js');
 
-  const functionName = toCamelCase(appName);
+  const functionName = funcName || toCamelCase(appName);
   const parameters = params.length ? params.join(', ') : '';
 
   fs.writeFile(jsFileName, getJsBody(functionName, parameters), 'utf8', function (err) {
