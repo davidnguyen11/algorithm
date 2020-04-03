@@ -1,2 +1,4 @@
 /**/*.xcodeproj
 /**/*.pyc
+
+/node_modules/
