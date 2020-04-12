@@ -9,7 +9,7 @@ const { name, version } = packageJson;
 const program = new commander.Command(name).version(version);
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
 
 program
@@ -27,7 +27,6 @@ program
 
       rl.close();
     });
-
   });
 
 program.parse(process.argv);

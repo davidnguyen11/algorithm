@@ -1,10 +1,10 @@
 {
-  "name": "maximum-subarray",
+  "name": "group-anagrams",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node ./index.js"
+    "test": "node index"
   },
   "keywords": [],
   "author": "",

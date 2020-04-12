@@ -12,9 +12,13 @@ module.exports = function (appName, funcName, params) {
   const functionName = funcName || toCamelCase(appName);
   const parameters = params.length ? params.join(', ') : '';
 
-  fs.writeFile(jsFileName, getJsBody(functionName, parameters), 'utf8', function (err) {
-    if (err) throw err;
-    console.log('Created index.js file successfully!!! 🎉 🎉 🎉');
-  });
+  fs.writeFile(
+    jsFileName,
+    getJsBody(functionName, parameters),
+    'utf8',
+    function (err) {
+      if (err) throw err;
+      console.log('Created index.js file successfully!!! 🎉 🎉 🎉');
+    },
+  );
 };
-

@@ -3,7 +3,7 @@
 const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
-const createPackageJson = require('./create-pkg');;
+const createPackageJson = require('./create-pkg');
 const createJSFile = require('./create-js');
 const isWord = require('./utils/is-word');
 
@@ -34,5 +34,3 @@ function getFunctionParams(arr) {
 
   return params;
 }
-
-
