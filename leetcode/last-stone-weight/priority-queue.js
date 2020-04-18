@@ -1,73 +1,142 @@
+Object.defineProperty(exports, '__esModule', { value: true });
+/**
+ * The priority queue is a collection in which items can be added at any time, but the only item that can be removed is the one with the highest priority.
+ * A heap is a complete binary tree in which the value of a node is less than or greater than all the values in its subtrees.
+ * By convention, the smallest or largest element is the one with the highest priority.
+ * This lib using "Max Heap" as the default to heapify.
+ * @example Changing from Max Priority Queue to Min Priority Queue
+ * const p = new PriorityQueue(function(a, b) { return a > b; });
+ * @example Add elements to queue
+ * const p = new PriorityQueue();
+ * p.push(1); // adding "1" to queue
+ * p.push(2); // adding "2" to queue
+ * p.push(3); // adding "3" to queue
+ * // After "push", queue looks like this: [3, 1, 2]
+ * @example Extract the largest or smallest element from the queue
+ * const elmenet = p.pop(); // return "3" which is the largest element in queue
+ * // After "pop", queue looks like this: [2, 1]
+ * @example Peek the element (get the largest or smallest element without removing it from queue)
+ * const elmenet = p.top(); // return "3" which is the largest element in queue
+ * // After "pop", queue looks like this: [3, 1, 2]
+ * @example Get the size of the queue
+ * const size = p.size(); // return "3", because the queue has 3 elements
+ * @example Check whether the queue is empty or not
+ * const isEmpty = p.empty();
+ * // return true, if the queue has elements
+ * // return false, if the queue is empty
+ * @example Extract queue to array
+ * const array = p.toArray(); // This will extract all elements from queue to array
+ * // return array = [3, 1, 2];
+ */
 class PriorityQueue {
-  constructor(queue = []) {
-    this.queue = queue;
-
-    if (this.queue && this.queue.length > 0) {
-      this._buildHeap();
-    }
+  constructor(comparator) {
+    this._queue = [];
+    this._comparator = comparator;
   }
-
-  push(value) {
-    this.queue.push(value);
-    let parent = Math.floor(this.queue.length / 2) - 1;
-    let position = this.queue.length - 1;
-
-    while (this.queue[parent] < this.queue[position]) {
-      this.swap(parent, position);
-      position = parent;
-      parent = Math.floor(position / 2);
-    }
-  }
-
-  pop() {
-    const num = this.queue.shift();
-    this._buildHeap();
-    return num;
-  }
-
-  top() {
-    return this.queue[0];
-  }
-
   /**
-   * Swap method using XOR
-   * @param {*} firstIndex
-   * @param {*} secondIndex
+   * Inserts the specified element into this priority queue.
+   * Everytime adding new element to queue, the queue is started "sift up" to rebuild the heap
+   * @param value
    */
-  swap(firstIndex, secondIndex) {
-    this.queue[firstIndex] = this.queue[firstIndex] ^ this.queue[secondIndex];
-    this.queue[secondIndex] = this.queue[firstIndex] ^ this.queue[secondIndex];
-    this.queue[firstIndex] = this.queue[firstIndex] ^ this.queue[secondIndex];
-  }
-
-  _buildHeap() {
-    const mid = Math.floor(this.queue.length / 2);
-    for (let i = mid - 1; i >= 0; i--) {
-      this._heapify(i);
+  push(value) {
+    this._queue.push(value);
+    let pos = this._queue.length - 1;
+    while (
+      pos !== 0 &&
+      this._compare(this._queue[this._parentOf(pos)], this._queue[pos])
+    ) {
+      this._swap(pos, this._parentOf(pos));
+      pos = this._parentOf(pos);
     }
   }
-
+  /**
+   * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+   */
+  top() {
+    return this._queue.length > 0 ? this._queue[0] : null;
+  }
+  /**
+   * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+   * Everytime pop element from queue, the queue is started "sift down" to rebuild the heap
+   */
+  pop() {
+    if (this._queue.length === 0) {
+      return null;
+    }
+    const item = this._queue[0];
+    this._queue[0] = this._queue[this._queue.length - 1];
+    this._swap(0, this._queue.length - 1);
+    this._queue.pop();
+    this._heapify(0);
+    return item;
+  }
+  /**
+   * Returns the number of elements in this collection.
+   */
+  size() {
+    return this._queue.length;
+  }
+  /**
+   * Checks whether the queue is empty.
+   */
+  empty() {
+    return this._queue.length === 0;
+  }
+  /**
+   * Returns an array containing all of the elements in this queue.
+   */
+  toArray() {
+    return [...this._queue];
+  }
+  /**
+   * Compare parent value and children value and swap them if conditions are satisfied
+   * @param index
+   */
   _heapify(index) {
-    const mid = Math.floor(this.queue.length / 2);
-
+    const mid = Math.floor(this._queue.length / 2);
+    let childIndex1;
+    let childIndex2;
+    let swapIndex;
     while (index <= mid - 1) {
-      const childIndex1 = 2 * index + 1;
-      const childIndex2 = 2 * index + 2;
-      let swapIndex = childIndex1;
-
-      if (this.queue[childIndex1] < this.queue[childIndex2]) {
+      childIndex1 = 2 * index + 1;
+      childIndex2 = 2 * index + 2;
+      swapIndex = childIndex1;
+      if (this._compare(this._queue[childIndex1], this._queue[childIndex2])) {
         swapIndex = childIndex2;
       }
-
-      if (this.queue[index] < this.queue[swapIndex]) {
-        this.swap(index, swapIndex);
+      if (this._compare(this._queue[index], this._queue[swapIndex])) {
+        this._swap(index, swapIndex);
       }
-
       index = swapIndex;
     }
   }
+  /**
+   * Swap 2 elememts
+   * @param index1
+   * @param index2
+   */
+  _swap(index1, index2) {
+    const temp = this._queue[index1];
+    this._queue[index1] = this._queue[index2];
+    this._queue[index2] = temp;
+  }
+  /**
+   * Compare 2 elements
+   * @param item1
+   * @param item2
+   */
+  _compare(item1, item2) {
+    if (this._comparator) {
+      return this._comparator(item1, item2);
+    }
+    return item1 < item2;
+  }
+  /**
+   * Get parent's index of the current element
+   * @param position
+   */
+  _parentOf(position) {
+    return Math.floor((position - 1) / 2);
+  }
 }
-
-module.exports = {
-  PriorityQueue
-};
+exports.PriorityQueue = PriorityQueue;
