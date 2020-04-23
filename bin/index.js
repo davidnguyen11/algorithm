@@ -4,6 +4,7 @@ const commander = require('commander');
 const readline = require('readline');
 const packageJson = require('../package.json');
 const generator = require('./generator');
+const ask = require('./ask');
 const { name, version } = packageJson;
 
 const program = new commander.Command(name).version(version);
@@ -15,18 +16,13 @@ const rl = readline.createInterface({
 program
   .command(`new [name] [arguments]`)
   .description('Set up boilerplate to solve problem')
-  .action(function (appName) {
-    rl.question('Enter function name in camelCase: ', (answer) => {
-      let funcName;
+  .action(async (appName) => {
+    const functionName = await ask(rl, 'Enter function name in camelCase: ');
+    const problemLink = await ask(rl, 'Enter problem link: ');
 
-      if (answer && answer.trim()) {
-        funcName = answer.trim();
-      }
+    generator(functionName, problemLink);
 
-      generator(funcName);
-
-      rl.close();
-    });
+    rl.close();
   });
 
 program.parse(process.argv);

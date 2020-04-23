@@ -13,8 +13,12 @@ function getPgkJSON(appName) {
   };
 }
 
-function getJsBody(functionName, parameters) {
-  return `var ${functionName} = function (${parameters}) {};`;
+function getComment(problemLink) {
+  return problemLink ? `// ${problemLink}` : '';
+}
+
+function getJsBody(functionName, parameters, problemLink) {
+  return `${getComment(problemLink)}\nvar ${functionName} = function (${parameters}) {};`;
 }
 
 module.exports = {

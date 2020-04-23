@@ -7,7 +7,7 @@ const createPackageJson = require('./create-pkg');
 const createJSFile = require('./create-js');
 const isWord = require('./utils/is-word');
 
-module.exports = function (funcName) {
+module.exports = function (funcName, problemLink) {
   const appName = process.argv[3];
   const pathName = path.join(process.cwd(), appName);
   const appNameExists = fs.existsSync(pathName);
@@ -15,7 +15,7 @@ module.exports = function (funcName) {
   if (!appNameExists) {
     fs.ensureDirSync(pathName);
     createPackageJson(appName);
-    createJSFile(appName, funcName, getFunctionParams(process.argv));
+    createJSFile(appName, funcName, getFunctionParams(process.argv), problemLink);
   } else {
     console.log(chalk.red('Project name is already existed. 😕 😕 😕'));
   }
