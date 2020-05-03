@@ -1,0 +1,12 @@
+{
+  "name": "check-if-all-1s-are-at-least-length-k-places-away",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
