@@ -96,7 +96,7 @@ var isCousins = function (node, x, y) {
       queue.unshift({ node: currentNode.right, level: currentLevel + 1 });
 
       map[currentNode.right.val] = {
-        level: map[currentNode.val].level + 1,
+        level: currentLevel + 1,
         parent: currentNode.val,
       };
     }

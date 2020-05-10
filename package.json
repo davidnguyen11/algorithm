@@ -41,6 +41,6 @@
     ]
   },
   "dependencies": {
-    "p-queue-ts": "^1.0.5"
+    "p-queue-ts": "^1.0.6"
   }
 }
