@@ -36,8 +36,7 @@
   },
   "lint-staged": {
     "*.{js}": [
-      "npm run prettier",
-      "git add"
+      "npm run prettier"
     ]
   },
   "dependencies": {
