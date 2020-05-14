@@ -1,0 +1,12 @@
+{
+  "name": "check-if-it-is-a-straight-line",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "deno run index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
