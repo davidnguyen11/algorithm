@@ -1,0 +1,12 @@
+{
+  "name": "number-of-students-doing-homework-at-a-given-time",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
