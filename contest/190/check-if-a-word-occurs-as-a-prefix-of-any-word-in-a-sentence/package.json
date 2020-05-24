@@ -1,0 +1,12 @@
+{
+  "name": "check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
