@@ -1,0 +1,12 @@
+{
+  "name": "maximum-number-of-vowels-in-a-substring-of-given-length",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
