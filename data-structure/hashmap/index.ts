@@ -102,7 +102,19 @@ class HashMap<T> implements IHashMap<T> {
   }
 
   public isEmpty(): boolean {
-    return this.length === 0;
+    return !this.length;
+  }
+
+  private getBucketIndex(key: string) {
+    const hash = this.hashCode(key);
+    const index = hash % this.capacities;
+    return index;
+  }
+
+  private initBuckets() {
+    for (let i = 0; i < this.capacities; i++) {
+      this.buckets.push(null as never);
+    }
   }
 
   private getBucketIndex(key: string) {
