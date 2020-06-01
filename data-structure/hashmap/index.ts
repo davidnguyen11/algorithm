@@ -117,6 +117,18 @@ class HashMap<T> implements IHashMap<T> {
     }
   }
 
+  private getBucketIndex(key: string) {
+    const hash = this.hashCode(key);
+    const index = hash % this.capacities;
+    return index;
+  }
+
+  private initBuckets() {
+    for (let i = 0; i < this.capacities; i++) {
+      this.buckets.push(null as never);
+    }
+  }
+
   private hashCode(key: string): number {
     let h: number = 0;
     for (let i = 0; i < key.length; i++) {
