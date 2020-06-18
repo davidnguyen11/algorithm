@@ -9,4 +9,4 @@ script:
   - npm run validate
 branches:
   only:
-    - master
+    - main
