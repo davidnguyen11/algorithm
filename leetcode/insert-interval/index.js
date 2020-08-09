@@ -12,30 +12,24 @@ var insert = function (intervals, newInterval) {
     if (newTemp) {
       temp = newTemp;
     } else {
-      ans.push(curr)
+      ans.push(curr);
     }
-
   }
   ans.push(temp);
-  // console.log(temp);
-  console.log('curr', ans);
 
-  ans.sort(function(a, b) {
-    return a[0] - b[0];
-  });
+  ans.sort((a, b) => a[0] - b[0]);
 
   return ans;
 };
 
 function getInterval(curr, newInterval) {
   var startCurr = curr[0];
-  var endCurr = curr[1]
+  var endCurr = curr[1];
 
   var startNewInterval = newInterval[0];
   var endNewInterval = newInterval[1];
 
   if (startCurr === startNewInterval && endCurr === endNewInterval) {
-    console.log('00');
     return curr;
   }
 
@@ -43,7 +37,6 @@ function getInterval(curr, newInterval) {
   let end = endCurr;
 
   if (startCurr <= startNewInterval && endNewInterval <= endCurr) {
-    console.log('11');
     if (endCurr < endNewInterval) {
       end = endNewInterval;
     }
@@ -52,7 +45,6 @@ function getInterval(curr, newInterval) {
   }
 
   if (startNewInterval <= startCurr && endCurr <= endNewInterval) {
-    console.log('22');
     if (startNewInterval < startCurr) {
       start = startNewInterval;
     }
@@ -64,8 +56,11 @@ function getInterval(curr, newInterval) {
     return [start, end];
   }
 
-  if (startCurr <= startNewInterval && endCurr <= endNewInterval && startNewInterval <= endCurr) {
-    console.log('33');
+  if (
+    startCurr <= startNewInterval &&
+    endCurr <= endNewInterval &&
+    startNewInterval <= endCurr
+  ) {
     if (endCurr < endNewInterval) {
       end = endNewInterval;
     }
@@ -73,8 +68,11 @@ function getInterval(curr, newInterval) {
     return [start, end];
   }
 
-  if (startNewInterval <= startCurr && endNewInterval <= endCurr && startCurr <= endNewInterval) {
-    console.log('44');
+  if (
+    startNewInterval <= startCurr &&
+    endNewInterval <= endCurr &&
+    startCurr <= endNewInterval
+  ) {
     if (startNewInterval < startCurr) {
       start = startNewInterval;
     }
@@ -83,15 +81,23 @@ function getInterval(curr, newInterval) {
   }
 }
 
-
-var intervals = [[1,3], [6,9]];
-var newInterval = [2,5];
+var intervals = [
+  [1, 3],
+  [6, 9],
+];
+var newInterval = [2, 5];
 
 // var intervals = [[1,3], [6,9]];
 // var newInterval = [12, 15];
 
-var intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]];
-var newInterval = [4,8];
+var intervals = [
+  [1, 2],
+  [3, 5],
+  [6, 7],
+  [8, 10],
+  [12, 16],
+];
+var newInterval = [4, 8];
 
 console.log(insert(intervals, newInterval));
 
