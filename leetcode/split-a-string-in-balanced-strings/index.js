@@ -1,29 +1,25 @@
+// https://leetcode.com/problems/split-a-string-in-balanced-strings/
 /**
  * @param {string} s
  * @return {number}
  */
 var balancedStringSplit = function (s) {
-  var arrC = s.split('');
-  console.log(arrC);
-  var result = 0;
-  var mode = arrC[0];
-  var prevMode;
+  const counter = {
+    L: 0,
+    R: 0,
+  };
+  let count = 0;
 
-  for (var i = 1; i < arrC.length; i++) {
-    var c = arrC[i];
+  for (let i = 0; i < s.length; i++) {
+    const letter = s[i];
 
-    if (c === prevMode) {
-      result++;
-    }
+    counter[letter]++;
 
-    if (c !== mode) {
-      prevMode = mode;
-      mode = c;
+    if (counter['L'] === counter['R']) {
+      count++;
+      counter['L'] = 0;
+      counter['R'] = 0;
     }
   }
-
-  return result;
+  return count;
 };
-
-var s = 'RLRRLLRLRL';
-console.log(balancedStringSplit(s));
