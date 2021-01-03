@@ -1,0 +1,12 @@
+{
+  "name": "how-many-apples-can-you-put-into-the-basket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
